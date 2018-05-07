@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Shot.gd" type="Script" id=1]
+[ext_resource path="res://assets/map/fire.png" type="Texture" id=2]
+
+[node name="Shot" type="PathFollow2D"]
+
+scale = Vector2( 3, 3 )
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = false
+lookahead = 4.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = 5.0
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+

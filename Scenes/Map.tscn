@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://classes/Map.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Mob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/tower_defense.tsx" type="TileSet" id=3]
+[ext_resource path="res://classes/Path2D.gd" type="Script" id=4]
+
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.033741, 103.649, 0, 0, 0, 0, 118.835, 103.69, 0, 0, 0, 0, 120.504, 262.469, 0, 0, 0, 0, 477.525, 263.815 )
+}
+
+[node name="Map" type="Node2D"]
+
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+Mob = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 262163, 0, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 29, 0, 327698, 0, 0, 393216, 0, 0, 393217, 10, 0, 393218, 10, 0, 393219, 10, 0, 393220, 10, 0, 393221, 10, 0, 393222, 10, 0, 393223, 28, 0, 393224, 4, 0, 393232, 0, 0, 393233, 0, 0, 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 15, 0, 458759, 25, 0, 458760, 4, 0, 458767, 0, 0, 524293, 63, 0, 524294, 3, 0, 524295, 25, 0, 524296, 4, 0, 589830, 3, 0, 589831, 25, 0, 589832, 4, 0, 655366, 3, 0, 655367, 25, 0, 655368, 4, 0, 720902, 3, 0, 720903, 25, 0, 720904, 4, 0, 786438, 3, 0, 786439, 25, 0, 786440, 4, 0, 851974, 3, 0, 851975, 25, 0, 851976, 4, 0, 917510, 3, 0, 917511, 25, 0, 917512, 4, 0, 983046, 3, 0, 983047, 25, 0, 983048, 24, 0, 983049, 63, 0, 983050, 1, 0, 983051, 1, 0, 983052, 1, 0, 983053, 1, 0, 983054, 1, 0, 983055, 1, 0, 983056, 1, 0, 983057, 1, 0, 983058, 1, 0, 983059, 1, 0, 983060, 1, 0, 983061, 1, 0, 983062, 1, 0, 983063, 1, 0, 983064, 1, 0, 983065, 1, 0, 983066, 1, 0, 983067, 1, 0, 983068, 1, 0, 983069, 1, 0, 1048582, 3, 0, 1048583, 26, 0, 1048584, 10, 0, 1048585, 10, 0, 1048586, 10, 0, 1048587, 10, 0, 1048588, 10, 0, 1048589, 10, 0, 1048590, 10, 0, 1048591, 10, 0, 1048592, 10, 0, 1048593, 10, 0, 1048594, 10, 0, 1048595, 10, 0, 1048596, 10, 0, 1048597, 10, 0, 1048598, 10, 0, 1048599, 10, 0, 1048600, 10, 0, 1048601, 10, 0, 1048602, 10, 0, 1048603, 10, 0, 1048604, 10, 0, 1048605, 8, 0, 1114118, 23, 0, 1114119, 2, 0, 1114120, 2, 0, 1114121, 2, 0, 1114122, 2, 0, 1114123, 2, 0, 1114124, 2, 0, 1114125, 2, 0, 1114126, 2, 0, 1114127, 2, 0, 1114128, 2, 0, 1114129, 2, 0, 1114130, 2, 0, 1114131, 2, 0, 1114132, 2, 0, 1114133, 2, 0, 1114134, 2, 0, 1114135, 2, 0, 1114136, 2, 0, 1114137, 2, 0, 1114138, 2, 0, 1114139, 2, 0, 1114140, 2, 0, 1114141, 2, 0 )
+_sections_unfolded = [ "Cell", "Occluder" ]
+
+[node name="Path2D" type="Path2D" parent="." index="1"]
+
+curve = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="TimerPopMob" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="TimerPopMob" to="." method="_on_TimerPopMob_timeout"]
+
+

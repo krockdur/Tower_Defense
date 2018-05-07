@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Mob.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Area2D.gd" type="Script" id=2]
+[ext_resource path="res://assets/map/bateau.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 37.1444, 33.9468 )
+
+[node name="Mob" type="PathFollow2D"]
+
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = false
+lookahead = 4.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+enemy_speed = 0.02
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+input_pickable = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = -1.0
+angular_damp = -1.0
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Pickable" ]
+
+[node name="bateau" type="Sprite" parent="Area2D" index="0"]
+
+rotation = -1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="debug" type="Label" parent="Area2D" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -52.0
+margin_top = -27.0
+margin_right = -12.0
+margin_bottom = -13.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "blabal"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="1"]
+
+rect = Rect2( -10, -10, 20, 20 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+
+

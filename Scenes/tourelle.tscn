@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/tourelle.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Shot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/map/support_tourelle.png" type="Texture" id=3]
+[ext_resource path="res://assets/map/tourelle.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 161.063, 236.089 )
+
+[sub_resource type="Curve2D" id=2]
+
+resource_name = "test_courbe"
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array(  )
+}
+_sections_unfolded = [ "Resource" ]
+
+[node name="canon" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+Shot = ExtResource( 2 )
+
+[node name="support_tourelle" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="tourelle" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( 0, -12.9318 )
+scale = Vector2( 1, 0.809144 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="debug" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -75.0
+margin_right = -35.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="debug2" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -335.0
+margin_top = 62.0
+margin_right = -295.0
+margin_bottom = 79.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer_Debug" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Path2D_fire" type="Path2D" parent="." index="6"]
+
+position = Vector2( 326.868, 122.488 )
+curve = SubResource( 2 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="Timer_Fire" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 0.08
+one_shot = false
+autostart = false
+
+[connection signal="area_entered" from="." to="." method="_on_canon_area_entered"]
+
+[connection signal="area_exited" from="." to="." method="_on_canon_area_exited"]
+
+[connection signal="tree_entered" from="." to="." method="_on_canon_tree_entered"]
+
+[connection signal="timeout" from="Timer_Debug" to="." method="_on_Timer_Debug_timeout"]
+
+[connection signal="timeout" from="Timer_Fire" to="." method="_on_Timer_Fire_timeout"]
+
+
