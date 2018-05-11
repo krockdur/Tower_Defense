@@ -7,3 +7,9 @@ func _ready():
 
 func _process(delta):
 	unit_offset = unit_offset + speed * delta
+
+
+
+func _on_Area2D_shot_area_entered(area):
+	if area.get_name() == "Mob_area2D":
+		queue_free()

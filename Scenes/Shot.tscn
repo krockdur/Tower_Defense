@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Shot.gd" type="Script" id=1]
 [ext_resource path="res://assets/map/fire.png" type="Texture" id=2]
 
-[node name="Shot" type="PathFollow2D"]
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 3.00592
+
+[node name="Shot" type="PathFollow2D" index="0"]
 
 scale = Vector2( 3, 3 )
 offset = 0.0
@@ -14,11 +19,27 @@ cubic_interp = true
 loop = false
 lookahead = 4.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Visibility" ]
 speed = 5.0
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Area2D_shot" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Munition" type="Sprite" parent="Area2D_shot" index="0"]
 
 texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_shot" index="1"]
+
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="Area2D_shot" to="." method="_on_Area2D_shot_area_entered"]
 
 

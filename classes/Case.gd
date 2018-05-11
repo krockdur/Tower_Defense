@@ -3,7 +3,8 @@
 
 var m_position = Vector2()
 var m_tourelle
-
+const CASE_WIDTH = 100
+const CASE_HEIGHT = 100
 
 #constructeur :
 #position => Vector2()

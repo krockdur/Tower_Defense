@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Mob.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/tourelle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/map/map_1.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Case_vide.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/map/map_1.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -19,10 +20,12 @@ _sections_unfolded = [ "Resource" ]
 script = ExtResource( 1 )
 Mob = ExtResource( 2 )
 tourelle = ExtResource( 3 )
+Case_vide = ExtResource( 4 )
 
 [node name="Sprite_map" type="Sprite" parent="." index="0"]
 
-texture = ExtResource( 4 )
+position = Vector2( 0, -5.16943 )
+texture = ExtResource( 5 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
 
@@ -39,34 +42,14 @@ one_shot = false
 autostart = false
 _sections_unfolded = [ "Pause" ]
 
-[node name="Grille" type="TileMap" parent="." index="3"]
-
-modulate = Color( 1, 0, 0, 1 )
-mode = 0
-tile_set = null
-cell_size = Vector2( 100, 100 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
-format = 1
-tile_data = PoolIntArray(  )
-_sections_unfolded = [ "Cell", "Visibility" ]
-
-[node name="Player" parent="." index="4" instance=ExtResource( 5 )]
-
-[node name="canon" parent="." index="5" instance=ExtResource( 3 )]
-
-position = Vector2( 614.317, 256.323 )
+[node name="Player" parent="." index="3" instance=ExtResource( 6 )]
 
 [connection signal="timeout" from="TimerPopMob" to="." method="_on_TimerPopMob_timeout"]
+
+[connection signal="boutton_t1" from="Player" to="." method="_on_Player_boutton_t1"]
+
+[connection signal="boutton_t2" from="Player" to="." method="_on_Player_boutton_t2"]
+
+[connection signal="boutton_t3" from="Player" to="." method="_on_Player_boutton_t3"]
 
 

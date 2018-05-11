@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta):
 	unit_offset = unit_offset + enemy_speed * delta
-	$Area2D/debug.text = "ID " + str(identifiant) + "\r\n" + str(position)
+	$Mob_area2D/debug.text = "ID " + str(identifiant) + "\r\n" + str(position)
 
 
 func _on_VisibilityNotifier2D_screen_exited():
