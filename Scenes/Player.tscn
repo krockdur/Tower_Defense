@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
 
-[node name="Player" type="CanvasLayer"]
+[node name="Player" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -17,10 +17,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 1113.0
+margin_top = 14.0
+margin_right = 1189.0
+margin_bottom = 82.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1

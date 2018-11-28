@@ -1,11 +1,7 @@
 extends Node2D
 
-var Map = load("res://classes/Map.gd")
-var map #la map chargée
-
 export (PackedScene) var Mob
 export (PackedScene) var tourelle
-export (PackedScene) var Case_vide
 
 var compteur_mob = 0
 var depart = 0.0
@@ -19,17 +15,7 @@ const SPRITE_HEIGHT = 100
 
 
 
-func _ready():
-	
-	#Chargement de la map
-	map = Map.new(1)
-	
-	for m_case in map.tab_case:
-		var temp_case_vide = Case_vide.instance()
-		temp_case_vide.position = m_case.m_position
-		add_child(temp_case_vide)
-		
-	
+func _ready():	
 	$TimerPopMob.start()
 
 func _process(delta):
@@ -70,14 +56,14 @@ func _input(event):
 	
 	var mouse_position = get_local_mouse_position()
 	
-	for m_case in map.tab_case:
-		#print (m_case.m_position)
-		if (mouse_position.x >= m_case.m_position.x) and (mouse_position.x <= m_case.m_position.x + m_case.CASE_WIDTH) and (mouse_position.y >= m_case.m_position.y) and (mouse_position.y <= m_case.m_position.y + m_case.CASE_HEIGHT):
-			print("ok")
-			var temp_tourelle
-			temp_tourelle = tourelle.instance()
-			temp_tourelle.position.x = m_case.m_position.x + m_case.CASE_WIDTH / 2
-			temp_tourelle.position.y = m_case.m_position.y + m_case.CASE_HEIGHT / 2
-			add_child(temp_tourelle)
-			liste_tourelles.append(temp_tourelle)
+#	for m_case in map.tab_case:
+#		#print (m_case.m_position)
+#		if (mouse_position.x >= m_case.m_position.x) and (mouse_position.x <= m_case.m_position.x + m_case.CASE_WIDTH) and (mouse_position.y >= m_case.m_position.y) and (mouse_position.y <= m_case.m_position.y + m_case.CASE_HEIGHT):
+#			print("ok")
+#			var temp_tourelle
+#			temp_tourelle = tourelle.instance()
+#			temp_tourelle.position.x = m_case.m_position.x + m_case.CASE_WIDTH / 2
+#			temp_tourelle.position.y = m_case.m_position.y + m_case.CASE_HEIGHT / 2
+#			add_child(temp_tourelle)
+#			liste_tourelles.append(temp_tourelle)
 	
